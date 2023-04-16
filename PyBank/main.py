@@ -22,19 +22,32 @@ with open(csvpath) as csvfile:
     profit_losses = []
     changes = []
     previous_value = None
+    greatest_increase = -float('inf')
+    greatest_decrease = float('inf')
+    greatest_increase_date = ""
+    greatest_decrease_date = ""
 
-    #Calculate average and greatest and lowest total increases
+    # Total number of months and total Profit/Losses 
     for row in csvreader:
         number_of_months += 1
         total += float(row[1])  
         profit_losses.append(float(row[1])) 
        
+ 
 
-
-    # Find the average Profit/Losses
+    # Find the chnages in Proft/Losses and average changes
         if previous_value is not None:
            change = float(row[1]) - previous_value
            changes.append(change)
+
+           # Fing the greatest increase and decrease over the entire period
+           if change > greatest_increase:
+               greatest_increase = round(change)
+               greatest_increase_date = row[0]
+           elif change < greatest_decrease:
+               greatest_decrease = round(change)
+               greatest_decrease_date = row[0]
+
 
         
 
@@ -51,4 +64,6 @@ with open(csvpath) as csvfile:
     print(f"Total Month: {number_of_months}")
     print(f"Total: $ {total}")
     print(f"Average Change: {average_change}")
+    print(f"Greatest Increase in Profits: {greatest_increase_date} (${greatest_increase})")
+    print(f" Greatest Decrease in Profits: {greatest_decrease_date} (${greatest_decrease})")
     
