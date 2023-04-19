@@ -18,14 +18,38 @@ with open(csvpath) as csvfile:
 
     #Set variables
     total_votes = 0
+    candidates = {}
+    
 
-
-
+    #fiding the total votes and getting each candidates neame
     for row in csvreader:
+        # same as below just short hand total_votes = total_votes + 1
         total_votes += 1
+        candidate_name =row[2]
+        if candidate_name not in candidates:
+            candidates[candidate_name] = 1
+        else:
+            candidates[candidate_name] += 1
 
 
     print(f"Total Votes: {total_votes}")
-    print("--------------------------")
+    print("------------------------")
+   
+
+#Percentage of votes and candidates who won
+max_votes = 0
+winner = ""
+for candidate, votes in candidates.items():
+    percentage = (votes / total_votes) * 100
+    print(f"{candidate}: {percentage: .3f}% ({votes})")
+    
+    #Find who won
+    if votes > max_votes:
+        max_votes = votes
+        winner = candidate
+
+print(f"Winner: {winner}")
+print("-------------------------")
+
 
 
