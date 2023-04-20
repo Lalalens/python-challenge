@@ -36,7 +36,7 @@ with open(csvpath) as csvfile:
        
  
 
-    # Find the chnages in Proft/Losses and average changes
+    # Find the changes in Proft/Losses and average changes
         if previous_value is not None:
            change = current_row - previous_value
            changes.append(change)
@@ -66,5 +66,14 @@ with open(csvpath) as csvfile:
     print(f"Total: $ {total}")
     print(f"Average Change: {average_change}")
     print(f"Greatest Increase in Profits: {greatest_increase_date} (${greatest_increase})")
-    print(f" Greatest Decrease in Profits: {greatest_decrease_date} (${greatest_decrease})")
-    
+    print(f"Greatest Decrease in Profits: {greatest_decrease_date} (${greatest_decrease})")
+
+
+    with open('./analysis/results.txt', 'w') as file: 
+        file.write(("Financial Analysis\n"))
+        file.write(("---------------------------"))
+        file.write((f"Total Month: {number_of_months}\n"))
+        file.write((f"Total: $ {total}\n"))
+        file.write((f"Average Change: {average_change}\n"))
+        file.write((f"Greatest Increase in Profits: {greatest_increase_date} (${greatest_increase})\n"))
+        file.write((f"Greatest Decrease in Profits: {greatest_decrease_date} (${greatest_decrease})\n"))
