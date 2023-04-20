@@ -11,7 +11,7 @@ csvpath = os.path.join('.', 'Resources', 'election_data.csv') # './Resources/ele
 with open(csvpath) as csvfile:
     csvreader = csv.reader(csvfile, delimiter="," )
     csv_header = next(csvreader)
- #  print(f"CSV Header: {csv_header}")
+ 
 
     #Set variables
     total_votes = 0
