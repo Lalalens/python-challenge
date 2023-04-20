@@ -51,14 +51,16 @@ print(f"Winner: {winner}")
 print("-------------------------")
 
 with open('./analysis/results.txt', 'w') as file:
-    file.write(("Election Results"))
-    file.write(("------------------------"))
-    file.write((f"Total Votes: {total_votes}"))
-    file.write(("------------------------"))
-    file.write((f"{candidate}: {round(percentage, 3)}% ({votes})"))
-    file.write(("-------------------------"))
-    file.write((f"Winner: {winner}"))
-    file.write(("-------------------------"))
+    file.write(("Election Results\n"))
+    file.write(("------------------------\n"))
+    file.write((f"Total Votes: {total_votes}\n"))
+    file.write(("------------------------\n"))
+    for candidate, votes in candidates.items():
+        percentage = (votes / total_votes) * 100 
+        file.write((f"{candidate}: {round(percentage, 3)}% ({votes})\n"))
+    file.write(("-------------------------\n"))
+    file.write((f"Winner: {winner}\n"))
+    file.write(("-------------------------\n"))
     
 
 
